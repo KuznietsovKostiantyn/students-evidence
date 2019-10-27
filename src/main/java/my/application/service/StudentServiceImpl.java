@@ -15,7 +15,7 @@ import java.util.Optional;
 @NoArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
-    @Autowired
+
     private StudentDao studentDao;
 
     public List<Student> showStudents(){

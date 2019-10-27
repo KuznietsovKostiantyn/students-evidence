@@ -2,6 +2,7 @@ package my.application;
 
 import my.application.configuration.WebConfig;
 import my.application.configuration.WebInitializer;
+import my.application.model.Course;
 import my.application.model.Student;
 import my.application.service.StudentService;
 import org.junit.Before;
@@ -18,6 +19,9 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import javax.transaction.Transactional;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -41,8 +45,19 @@ public class StudentServiceImplTest {
 
     @Before
     public void preConfiguration() throws Exception{
-        studentService.save(new Student("John", "Walker", 21, "J180698" ));
-        studentService.save(new Student("Peter", "Burns", 49, "P289384" ));
+        Student student1 = new Student("John", "Walker", 21, "J180698");
+        Set<Course> courses = new HashSet<>();
+        Course course1 = new Course();
+        course1.setName("PA1");
+        course1.setAbbreviation("PA1");
+        Course course2 = new Course();
+        course1.setName("PA2");
+        course1.setAbbreviation("PA2");
+        courses.add(course1);
+        courses.add(course2);
+        student1.setCourses(courses);
+        studentService.save(student1);
+        //studentService.save(new Student("Peter", "Burns", 49, "P289384" ));
     }
 
     @Test
